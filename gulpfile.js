@@ -1,4 +1,5 @@
 // generated on 2018-06-09 using generator-webapp 3.0.1
+const fs = require('fs');
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create();
@@ -12,13 +13,16 @@ const runSequence = require('run-sequence');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
+const datasource = (file) => {
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
+}
 
 let dev = true;
 
 gulp.task('views', () => {
   return gulp.src('app/*.pug')
     .pipe($.plumber())
-    .pipe($.pug({pretty: true}))
+    .pipe($.pug({pretty: true, data: {datasource: datasource}}))
     .pipe(gulp.dest('.tmp'))
     .pipe(reload({stream: true}));
 });

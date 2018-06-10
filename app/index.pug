@@ -1,14 +1,15 @@
 extends layouts/default
 
 block content
+  - var data = datasource('app/data/test.json');
   .jumbotron
-    h1 322222
+    h1 222 #{data.test}
     p.lead Always a pleasure scaffolding your apps.
     p: a.btn.btn-lg.btn-success(href='#') Splendid!
 
   .row.marketing
     .col-lg-6
-      h4 HTML5 Boilerplate
+      h4 HTML5 Boilerplate s
       p HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
 
       h4 Sass
